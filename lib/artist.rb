@@ -1,3 +1,4 @@
+require 'pry'
 class Artist 
 
     attr_accessor :name
@@ -50,6 +51,20 @@ class Artist
 
     def songs
         @songs
+    end
+
+    def genres
+        array = songs.map do | song |
+            song.genre
+            #binding.pry
+        end
+
+        array.uniq
+
+        #songs_array = song.genre
+
+        #songs_array.uniq
+
     end
 
 end
