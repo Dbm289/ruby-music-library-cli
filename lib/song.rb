@@ -7,7 +7,6 @@ class Song
 
     def initialize(name, artist=nil, genre=nil)
         @name = name
-        @@all << self
         #binding.pry
         if artist != nil
             self.artist=(artist)
@@ -27,7 +26,7 @@ class Song
     end
 
     def save
-        @@all << Song
+        @@all << self
     end
 
     def self.count
@@ -59,18 +58,27 @@ class Song
         self.all.find{|song| song.name == song_name}
     end
 
-    def self.new_by_name(song_name)
-        new_song = self.new
-        new_song.name = song_name
-        return new_song
+   # def self.new_by_name(song_name)
+    #    new_song = self.new
+     #   new_song.name = song_name
+      #  return new_song
 
-    end
+    #end
 
     def self.find_or_create_by_name(name)
-        self.find_by_name(name) || self.new(name)
+       self.find_by_name(name) || self.create(name)
 
     end
 
+   def self.new_from_filename(filename)
+    #binding.pry
+    parts = filename.split(" - ")
+    artist = parts[0]
+    name = parts[1]
+    genre = parts[2]
+
+    song.new(artist, name, genre)
+   end
       
 
     #def artist_name
