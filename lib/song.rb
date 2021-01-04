@@ -5,6 +5,8 @@ class Song
 
     @@all = []
 
+    extend Concerns::Findable
+
     def initialize(name, artist=nil, genre=nil)
         @name = name
         #binding.pry
@@ -73,11 +75,26 @@ class Song
    def self.new_from_filename(filename)
     #binding.pry
     parts = filename.split(" - ")
-    artist = parts[0]
+    artist = Artist.find_or_create_by_name(parts[0])
     name = parts[1]
-    genre = parts[2]
+    genre = Genre.find_or_create_by_name(parts[2].gsub(".mp3", ""))
 
-    song.new(artist, name, genre)
+    Song.new(name, artist, genre)
+
+
+   end
+
+   def self.create_from_filename(filename)
+    #parts = filename.split(" - ")
+    #artist = Artist.find_or_create_by_name(parts[0])
+    #name = parts[1]
+    #genre = Genre.find_or_create_by_name(parts[2].gsub(".mp3", ""))
+
+    #new_song = Song.new(name, artist, genre)
+    new_song = self.new_from_filename(filename)
+    new_song.save
+    new_song
+
    end
       
 
