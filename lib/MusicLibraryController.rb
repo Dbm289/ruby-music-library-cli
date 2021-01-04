@@ -1,3 +1,4 @@
+require 'pry'
 class MusicLibraryController
 
     attr_accessor :path
@@ -19,8 +20,39 @@ class MusicLibraryController
         puts "To play a song, enter 'play song'."
         puts "To quit, type 'exit'."
         puts "What would you like to do?"
+        input = gets.chomp
+        while input != "exit"
+            if input == "list songs"
+                Song.all
+            elsif input == "list artists"
+                Artist.all
+            elsif input == "list genres"
+                Genre.all
+            elsif input == "list artist"
+                artist.song
+            elsif input == "list genre"
+                genre.song
+            elsif input == "play song"
+                nil
+            end
 
-            gets.chomp
+            input = gets.chomp
+        end
+
+        def list_songs
+            #binding.pry
+            song_list = Song.all
+            song_array = song_list.sort
+            song_array 
+
+
+
+        end
+
+       # while input != "exit"
+        #    gets.chomp
+        
+        #end
             
 
     end
