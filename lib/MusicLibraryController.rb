@@ -40,19 +40,46 @@ class MusicLibraryController
         end
 
         def list_songs
-            #binding.pry
+        
             song_list = Song.all
-            song_array = song_list.sort
-            song_array 
+            #binding.pry
+            #song_names = song_list.sort_by do | song |
+                #binding.pry 
+            new_array = song_list.sort { | song_1, song_2 | song_1.name <=> song_2.name } #song.name
+            new_array.each_with_index do | song, index | 
+                puts "#{index + 1}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
+            end
+
+            #binding.pry
+            #end
 
 
+
+
+
+            #song_array.each do | item |
+             #   puts "1. #{item}"
+
+            #end
+
+
+            
+        end
+
+        def list_artists
+            artist_list = Artist.all
+            new_array = artist_list.sort { | artist_1, artist_2 | artist_1.name <=> artist_2.name } #song.name
+            new_array.each_with_index do | artist, index | 
+                puts "#{index + 1}. #{artist.name}"
+                binding.pry
+
+                    
+                #song.artist.name} - #{song.name} - #{song.genre.name}"
+            end
 
         end
 
-       # while input != "exit"
-        #    gets.chomp
-        
-        #end
+       
             
 
     end
