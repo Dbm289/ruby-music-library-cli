@@ -80,6 +80,29 @@ class MusicLibraryController
 
         end
 
+        def list_genres
+            genre_list = Genre.all
+            #binding.pry
+            new_array = genre_list.sort { | genre_1, genre_2 | genre_1.name <=> genre_2.name }
+            new_array.each_with_index do | genre, index | 
+                puts "#{index + 1}. #{genre.name}"
+            end
+
+        end
+
+        def list_songs_by_artist
+            puts "Please enter the name of an artist:"
+            input = gets.chomp
+
+            song_list = Song.input
+            #binding.pry
+            new_array = song_list.sort { | song_1, song_2 | song_1.name <=> song_2.name } #song.name
+            new_array.each_with_index do | song, index | 
+               puts "#{index + 1}. #{song.name} - #{song.genre.name}"
+            end
+
+        end
+
        
             
 
