@@ -68,10 +68,11 @@ class MusicLibraryController
 
         def list_artists
             artist_list = Artist.all
+            #binding.pry
             new_array = artist_list.sort { | artist_1, artist_2 | artist_1.name <=> artist_2.name } #song.name
             new_array.each_with_index do | artist, index | 
                 puts "#{index + 1}. #{artist.name}"
-                binding.pry
+                #binding.pry
 
                     
                 #song.artist.name} - #{song.name} - #{song.genre.name}"
